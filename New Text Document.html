@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Completer</title>
+  <style>
+    /* Background Styling */
+    .background-img {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .background-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1;
+    }
+
+    .background-img .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.6), rgba(0, 0, 128, 0.6));
+      z-index: 1;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      color: #ffffff;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .task-container, .timer-setup {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .task-container input, .timer-setup input {
+      border: 1px solid #ccc;
+    }
+
+    .task {
+      background: #ffffff;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      color: #000;
+    }
+
+    .timer-section {
+      margin-top: 10px;
+    }
+
+    .circular-timer {
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .circular-timer svg {
+      transform: rotate(-90deg);
+      width: 80px;
+      height: 80px;
+    }
+
+    .circle-bg {
+      fill: none;
+      stroke: #eee;
+      stroke-width: 8;
+    }
+
+    .circle-progress {
+      fill: none;
+      stroke: #00bfff;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 251;
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    .points-section {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .congrats {
+      font-size: 28px;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      animation: fadeInOut 5s ease forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% {opacity: 0;}
+      10% {opacity: 1;}
+      90% {opacity: 1;}
+      100% {opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Image and Overlay -->
+  <div class="background-img">
+    <img src="image.png" alt="To-Do Background">
+    <div class="overlay"></div>
+  </div>
+
+  <h1>Task Completer</h1>
+
+  <!-- Task Input -->
+  <div class="task-container">
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+  </div>
+
+  <!-- Timer Setup -->
+  <div class="timer-setup">
+    <input type="number" id="hourInput" placeholder="HH" min="0">
+    <input type="number" id="minuteInput" placeholder="MM" min="0">
+    <input type="number" id="secondInput" placeholder="SS" min="0">
+  </div>
+
+  <!-- Task List -->
+  <div id="taskList"></div>
+
+  <!-- Completed Tasks & Points -->
+  <div class="points-section">
+    <h3>Past Completed Tasks</h3>
+    <ul id="completedTasks" style="list-style:none; padding:0;"></ul>
+    <div style="margin-top: 10px;">
+      <button onclick="resetCompletedTasks()">🗑️ Clear All</button>
+      <button onclick="exportCompletedTasks()">📤 Export</button>
+    </div>
+    <div style="margin-top: 10px;">Points: <span id="points">0</span> / 1000</div>
+  </div>
+
+  <script>
+    let points = 0;
+
+    function formatTime(ms) {
+      const totalSeconds = Math.floor(ms / 1000);
+      const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+      const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      const seconds = String(totalSeconds % 60).padStart(2, '0');
+      return hours + ":" + minutes + ":" + seconds;
+    }
+
+    function addTask() {
+      const taskText = document.getElementById("taskInput").value;
+      const hours = parseInt(document.getElementById("hourInput").value) || 0;
+      const minutes = parseInt(document.getElementById("minuteInput").value) || 0;
+      const seconds = parseInt(document.getElementById("secondInput").value) || 0;
+
+      if (!taskText) return alert("Please enter a task!");
+      const totalTime = (hours * 3600 + minutes * 60 + seconds) * 1000;
+      if (totalTime <= 0) return alert("Please set a valid timer.");
+
+      const taskEl = document.createElement("div");
+      taskEl.className = "task";
+      taskEl.innerHTML = `<strong>${taskText}</strong>`;
+
+      const timerSection = document.createElement("div");
+      timerSection.className = "timer-section";
+
+      const circularTimer = document.createElement("div");
+      circularTimer.className = "circular-timer";
+      circularTimer.innerHTML = `
+        <svg>
+          <circle class="circle-bg" cx="40" cy="40" r="40"></circle>
+          <circle class="circle-progress" cx="40" cy="40" r="40"></circle>
+        </svg>
+      `;
+      const progressCircle = circularTimer.querySelector(".circle-progress");
+
+      const timeDisplay = document.createElement("div");
+      timeDisplay.className = "time-display";
+      timeDisplay.textContent = formatTime(totalTime);
+
+      const timerWrapper = document.createElement("div");
+      timerWrapper.style.display = "flex";
+      timerWrapper.style.alignItems = "center";
+      timerWrapper.style.gap = "15px";
+      timerWrapper.appendChild(circularTimer);
+      timerWrapper.appendChild(timeDisplay);
+
+      let timeLeft = totalTime;
+      let timer;
+      let running = false;
+
+      const startBtn = document.createElement("button");
+      startBtn.textContent = "Start";
+      startBtn.onclick = function () {
+        if (running || timeLeft <= 0) return;
+        running = true;
+        const originalTime = timeLeft;
+        timer = setInterval(() => {
+          timeLeft -= 1000;
+          if (timeLeft <= 0) {
+            clearInterval(timer);
+            timeDisplay.textContent = "00:00:00";
+            progressCircle.style.strokeDashoffset = 251;
+            taskCompleted(taskText);
+            running = false;
+          } else {
+            timeDisplay.textContent = formatTime(timeLeft);
+            const progress = (timeLeft / originalTime) * 251;
+            progressCircle.style.strokeDashoffset = 251 - progress;
+          }
+        }, 1000);
+      };
+
+      const pauseBtn = document.createElement("button");
+      pauseBtn.textContent = "Pause";
+      pauseBtn.onclick = function () {
+        if (timer) {
+          clearInterval(timer);
+          running = false;
+        }
+      };
+
+      const fixBtn = document.createElement("button");
+      fixBtn.textContent = "Fix Time";
+      fixBtn.onclick = function () {
+        const newH = prompt("Enter new hours:", 0) || 0;
+        const newM = prompt("Enter new minutes:", 0) || 0;
+        const newS = prompt("Enter new seconds:", 0) || 0;
+        timeLeft = (parseInt(newH) * 3600 + parseInt(newM) * 60 + parseInt(newS)) * 1000;
+        timeDisplay.textContent = formatTime(timeLeft);
+        progressCircle.style.strokeDashoffset = 0;
+      };
+
+      timerSection.appendChild(timerWrapper);
+      timerSection.appendChild(startBtn);
+      timerSection.appendChild(pauseBtn);
+      timerSection.appendChild(fixBtn);
+
+      taskEl.appendChild(timerSection);
+      document.getElementById("taskList").appendChild(taskEl);
+    }
+
+    function taskCompleted(taskText) {
+      points += 100;
+      document.getElementById("points").textContent = points;
+
+      const congrats = document.createElement("div");
+      congrats.className = "congrats";
+      congrats.innerHTML = "🎉 Task Completed 🎉";
+      document.body.appendChild(congrats);
+
+      setTimeout(() => {
+        document.body.removeChild(congrats);
+      }, 5000);
+
+      // Save completed task
+      const completedTasks = JSON.parse(localStorage.getItem("completedTasks") || "[]");
+      completedTasks.push(taskText);
+      localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+      updateCompletedTasksUI();
+    }
+
+    function updateCompletedTasksUI() {
+      const completedTasks = JSON.parse(localStorage.getItem("completedTasks") || "[]");
+      const list = document.getElementById("completedTasks");
+      list.innerHTML = "";
+      completedTasks.forEach(task => {
+        const li = document.createElement("li");
+        li.textContent = task;
+        list.appendChild(li);
+      });
+    }
+
+    function resetCompletedTasks() {
+      if (confirm("Are you sure you want to delete all past completed tasks?")) {
+        localStorage.removeItem("completedTasks");
+        updateCompletedTasksUI();
+      }
+    }
+
+    function exportCompletedTasks() {
+      const tasks = JSON.parse(localStorage.getItem("completedTasks") || "[]");
+      if (tasks.length === 0) return alert("No tasks to export!");
+
+      const content = tasks.join("\n");
+      const blob = new Blob([content], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "completed_tasks.txt";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function playBeep() {
+      const audio = new Audio("https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg");
+      audio.volume = 0.5;
+      audio.play().catch(() => {});
+    }
+
+    // Set hourly alarm
+    setInterval(() => {
+      alert("⏰ Hourly Reminder!");
+      playBeep();
+    }, 3600000); // every 1 hour
+
+    // Load on start
+    updateCompletedTasksUI();
+  </script>
+</body>
+</html>
+
