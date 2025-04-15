@@ -1,0 +1,183 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5VLWL8Q');</script>
+        <!-- End Google Tag Manager -->
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Firework by Startpack — Fastest access to web applications</title>
+        <meta name="description" content='Free application for easy access to web services. Combine apps, fasten to the taskbar and easily switch between them.' />
+        <meta name="keywords" content='firework, startpack, browser, fast access, access to services, services for business, cloud apps' />
+        
+        <link rel="preload" href="/firework-cloud/font/opensans-regular-webfont.woff2" crossOrigin="anonymous" as="font">
+        <link rel="preload" href="/firework-cloud/font/sfuidisplay-light-webfont.woff2" crossOrigin="anonymous" as="font">
+        <link rel="preload" href="/firework-cloud/font/sfuidisplay-thin-webfont.woff2" crossOrigin="anonymous" as="font">
+        <link rel="preload" href="/firework-cloud/font/sfuidisplay-medium-webfont.woff2" crossOrigin="anonymous" as="font">
+        
+        <link rel="image_src" href='https://firework.cloud/img/share-img.jpg' />
+
+        <meta property="fb:app_id" content="1380212752295582" />
+        <meta property="og:title" content='Firework by Startpack — Fastest access to web applications' />
+        <meta property="og:description" content='Free application for easy access to web services. Combine apps, fasten to the taskbar and easily switch between them.' />
+        <meta property="og:image" content='https://firework.cloud/img/share-img.jpg' />
+        <meta property="og:url" content='https://firework.cloud' />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Startpack_ru" />
+        <meta name="twitter:title" content='Firework by Startpack — Fastest access to web applications' />
+        <meta name="twitter:description" content='Free application for easy access to web services. Combine apps, fasten to the taskbar and easily switch between them.' />
+        <meta name="twitter:image" content='https://firework.cloud/img/share-img.jpg' />
+
+        <link rel="stylesheet" type="text/css" href='/css/share.css'>
+
+        <link rel="shortcut icon" type="image/vnd.microsoft.icon" href='/favicon.ico' />
+        <link rel="shortcut icon" type="image/x-icon" href='/favicon.ico' />
+        <link rel="apple-touch-icon" sizes="57x57" href='/img/favicon/apple-touch-icon-57x57.png' />
+        <link rel="apple-touch-icon" sizes="60x60" href='/img/favicon/apple-touch-icon-60x60.png' /> 
+        <link rel="apple-touch-icon" sizes="72x72" href='/img/favicon/apple-touch-icon-72x72.png' />
+        <link rel="apple-touch-icon" sizes="76x76" href='/img/favicon/apple-touch-icon-76x76.png' />
+        <link rel="apple-touch-icon" sizes="114x114" href='/img/favicon/apple-touch-icon-114x114.png' />
+        <link rel="apple-touch-icon" sizes="120x120" href='/img/favicon/apple-touch-icon-120x120.png' />
+        <link rel="apple-touch-icon" sizes="144x144" href='/img/favicon/apple-touch-icon-144x144.png' />
+        <link rel="apple-touch-icon" sizes="152x152" href='/img/favicon/apple-touch-icon-152x152.png' />
+        <link rel="apple-touch-icon" sizes="180x180" href='/img/favicon/apple-touch-icon-180x180.png' />
+        <link rel="icon" type="image/png" sizes="16x16" href='/img/favicon/favicon-16x16.png'/>
+        <link rel="icon" type="image/png" sizes="32x32" href='/img/favicon/favicon-32x32.png' />
+        <link rel="icon" type="image/png" sizes="48x48" href='/img/favicon/android-chrome-48x48.png' />
+        <link rel="icon" type="image/png" sizes="72x72" href='/img/favicon/android-chrome-72x72.png' />
+        <link rel="icon" type="image/png" sizes="96x96" href='/img/favicon/android-chrome-96x96.png'/>
+        <link rel="icon" type="image/png" sizes="192x192" href='/img/favicon/android-chrome-192x192.png'/>
+        <link rel="icon" type="image/png" sizes="256x256" href='/img/favicon/android-chrome-256x256.png'/>
+        <link rel="manifest" href='/img/favicon/manifest.json' />
+        <link rel="mask-icon" href='/img/favicon/safari-pinned-tab.svg' color="#078ceb" />
+        <meta name="msapplication-TileColor" content="#ffffff"> 
+        <meta name="msapplication-TileImage" content='/img/favicon/mstile-150x150.png' />
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="alternate" hreflang="x-default" href='https://firework.cloud' />
+        <link rel="alternate" hreflang="ru" href='https://firework.cloud/ru/' />
+        <link rel="alternate" hreflang="en" href='https://firework.cloud/en/' />
+
+		<script>
+			var params = {
+				contextPath : ''
+			};
+		</script>
+    </head>
+
+    <body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VLWL8Q"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+        <header>
+            <div>
+            	<a href='/' title='Firework by Startpack — Fastest access to web applications'>
+            		<img alt="Firework" src='/img/firework-logo.png' />
+           		</a>
+            </div>
+        </header>
+        
+        <main>
+        
+        	<div id="main-content">
+        	
+	        	<div>
+	        		
+	        		
+    	    		<img id="share-link-icon" 
+    	    			alt="Application icon" 
+    	    			data-default-src='/img/default.png' 
+    	    			onerror='onImgError(this)' 
+    	    			src='https://white-benedetta-85.tiiny.site/favicon.ico' />
+        		</div>
+        		
+        		<div id="share-link-name">Task Completer</div>
+        		
+	        	<p>
+	        		If you have Firework, you can add “Task Completer” to your web applications.
+        		</p>
+        		
+    	    	<div>
+        			<button 
+        				id="add-button" 
+        				class="button" 
+        				data-share-id='Pwt5nV'
+        				data-protocol='firework'>Add</button>
+        		</div>
+        		
+	        	<p>
+	        		Don’t have Firework yet? Try it now:
+	        	</p>
+	        	
+    	    	<div>
+        			<button id="download-firework" 
+        				class="button-ref">Get Firework</button>
+        		</div>
+        	</div>
+        </main>
+
+        <div id="agreement">
+            <div>
+                
+                <div id="agreement-close"></div>
+                
+                <h3>Download Firework</h3>
+                
+                
+                	
+                	
+                		<p>For Windows 7/8/10</p>
+                	
+                
+                
+                
+                <iframe src='/doc/agreement-en.html'></iframe>
+                
+                <div>
+                	
+                		
+                		
+		                    <a 
+		                    	id="agreement-download-3" 
+		                    	class="agreement-download"
+		                    	href="/fw/download/packages/FireworkInstaller.exe" 
+		                    	download="FireworkInstaller_Pwt5nV.exe" 
+		                    	data-filename="FireworkInstaller_Pwt5nV.exe">Accept and install</a>
+                		
+                	
+                </div>
+            </div>
+        </div>
+
+        <div id="agreement-loading">
+            <div>
+            	<img alt="Loading..." src='/img/loading.gif' />
+            </div>
+        </div>
+
+        <!-- Script -->
+        <script src='/3rdparty/jquery/jquery-3.1.1.min.js'></script>
+        <script src='/js/util.js?9' charset="utf-8"></script>
+        <script src='/js/share.js?9' charset="utf-8"></script>
+        <!-- /Script -->
+
+    </body>
+</html>
